@@ -12,7 +12,7 @@ class PermissionToggleButton extends StatelessWidget {
   final void Function(bool)? onChanged;
 
   const PermissionToggleButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.value,
     required this.title,
@@ -22,7 +22,7 @@ class PermissionToggleButton extends StatelessWidget {
     this.fontSize,
     this.fontWeight,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class PermissionToggleButton extends StatelessWidget {
               child: Icon(icon, color: Colors.white, size: 35),
             ),
           ),
-          SizedBox(width: 14),
+          const SizedBox(width: 14),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,7 +55,7 @@ class PermissionToggleButton extends StatelessWidget {
               if (subTitle != null) // Show subtitle if present
                 Text(
                   subTitle!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),

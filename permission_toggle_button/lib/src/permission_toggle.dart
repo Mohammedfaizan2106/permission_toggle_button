@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A customizable permission toggle button widget.
 class PermissionToggle extends StatefulWidget {
   final String title;
   final String? subTitle; // Made optional
@@ -12,7 +13,7 @@ class PermissionToggle extends StatefulWidget {
   final void Function(bool)? onChanged;
 
   const PermissionToggle({
-    Key? key,
+    super.key,
     required this.icon,
     required this.value,
     required this.title,
@@ -22,7 +23,7 @@ class PermissionToggle extends StatefulWidget {
     this.fontSize,
     this.fontWeight,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<PermissionToggle> createState() => _PermissionToggleState();
@@ -46,7 +47,7 @@ class _PermissionToggleState extends State<PermissionToggle> {
               child: Icon(widget.icon, color: Colors.white, size: 35),
             ),
           ),
-          SizedBox(width: 14),
+          const SizedBox(width: 14),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -60,7 +61,7 @@ class _PermissionToggleState extends State<PermissionToggle> {
               if (widget.subTitle != null) // Show subtitle if present
                 Text(
                   widget.subTitle!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
@@ -68,11 +69,14 @@ class _PermissionToggleState extends State<PermissionToggle> {
             ],
           ),
           const Spacer(),
-          Switch(
-            value: widget.value,
-            activeColor: Colors.white,
-            activeTrackColor: widget.activeTrackColor ?? const Color(0xffFF7F7B),
-            onChanged: widget.onChanged,
+          Tooltip(
+            message: widget.title, // Tooltip for accessibility
+            child: Switch(
+              value: widget.value,
+              activeColor: Colors.white,
+              activeTrackColor: widget.activeTrackColor ?? const Color(0xffFF7F7B),
+              onChanged: widget.onChanged,
+            ),
           ),
         ],
       ),

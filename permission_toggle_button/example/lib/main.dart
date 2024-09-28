@@ -1,41 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:permission_toggle_button/my_flutter_package.dart';
-// import 'package:permission_toggle_button/permission_toggle_button.dart';
-// import 'package:permissions_with_button/my_flutter_package.dart'; // Import your package
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Permission Toggle Example',
       home: Scaffold(
-        appBar: AppBar(title: Text('Permission Widgets Example')),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            PermissionToggle(
-              title: 'Camera Access',
-              subTitle: 'Allow the app to access your camera',
-              value: true,
-              icon: Icons.camera_alt,
-              onChanged: (bool value) {
-                print('Camera access toggled: $value');
-              },
-            ),
-            SizedBox(height: 20),
-            PermissionToggleButton(
-              title: 'Location Access',
-              subTitle: 'Allow the app to access your location',
-              value: false,
-              icon: Icons.location_on,
-              onChanged: (bool value) {
-                print('Location access toggled: $value');
-              },
-            ),
-          ],
+        appBar: AppBar(title: const Text('Permission Toggle Example')),
+        body: Center(
+          child: PermissionToggle(
+            key: const ValueKey('permission_toggle'), // Named key parameter
+            icon: Icons.location_on,
+            value: true,
+            title: 'Location Access',
+            subTitle: 'Allow this app to access your location',
+            activeColor: Colors.green,
+            activeTrackColor: Colors.lightGreen,
+            onChanged: (bool newValue) {
+              // Handle the change
+              if (newValue) {
+              } else {
+              }
+            },
+          ),
         ),
       ),
     );
